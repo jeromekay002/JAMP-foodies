@@ -23,10 +23,7 @@ if (isset($_SESSION['redirect_from_checkout']) && $_SESSION['redirect_from_check
         echo $_SESSION['payment'];
         unset($_SESSION['payment']);
       }
-      if (isset($_SESSION['success'])) {
-        $successMessage = $_SESSION['success'];
-        unset($_SESSION['success']);
-      }
+    
 
       if (isset($_SESSION['customer_id'])) {
         $customer_id = $_SESSION['customer_id'];
@@ -88,7 +85,7 @@ if (isset($_SESSION['redirect_from_checkout']) && $_SESSION['redirect_from_check
         $cart_items_count = $total_cost = $vat_amount = $subtotal = $total_amount = 0;
       }
       ?>
-      <form id="checkout-form" action="index.php" method="post">
+      <form id="checkout-form" action="process_checkout.php" method="post">
         <div class="main-checkout">
           <div class="customer-details">
             <div class="mb-2">
@@ -118,14 +115,6 @@ if (isset($_SESSION['redirect_from_checkout']) && $_SESSION['redirect_from_check
               <input type="email" name="email" class="form-control" value="<?php echo isset($email) ? $email : ''; ?>" autocomplete="off" required>
               <div id="email_error" class="invalid-feedback" style="display: none;">Please enter a valid email address.</div>
             </div>
-
-            <div class="mb-2">
-              <label for="phone_number" class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" id="phone_number" name="phone_number"
-                placeholder="Enter your phone number" required />
-              <div id="phone_error" class="text-danger" style="display: none;"></div>
-            </div>
-
   
             <div class="mb-2">
               <label for="" class="form-label">Delivery Address</label>
@@ -166,11 +155,6 @@ if (isset($_SESSION['redirect_from_checkout']) && $_SESSION['redirect_from_check
                     $quantity = $cart_items_row['quantity'];
                     $price = $cart_items_row['price'];
                     $total_price = $cart_items_row['total_price'];
-                    // $total_cost += $total_price;
-                    // $vat_percentage = 0.16; // 16%
-                    // $vat_amount = $total_cost * $vat_percentage;
-                    // $subtotal = $total_cost - $vat_amount;
-                    // $total_amount = $subtotal + $vat_amount;
                 ?>
                     <tr>
                       <td class="flex">

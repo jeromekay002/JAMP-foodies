@@ -33,7 +33,7 @@
                         <?php
                         if ($category_image !== "") {
                         ?>
-                            <img src="<?php echo $category_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
+                            <img src="images/categories/<?php echo $category_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
                         <?php
                             // echo '<img src="$category_image" alt="Category Image" class="img-responsive rounded mx-auto d-block">';
                         } else {
@@ -60,7 +60,7 @@
         <h2 class="head text-center">Food Menu</h2>
         <div class="food-menu-boxes">
             <?php
-            $get_food_sql = "SELECT * FROM food";
+            $get_food_sql = "SELECT * FROM food LIMIT 8";
             $get_food_result = mysqli_query($connect, $get_food_sql);
             if (!$get_food_result) {
                 die("Get food sql error: " . mysqli_error($connect));
@@ -78,7 +78,7 @@
                             <?php
                             if ($food_image !== "") {
                             ?>
-                                <img src="<?php echo $food_image; ?>" class="rounded" alt="Food image">
+                                <img src="images/food/<?php echo $food_image; ?>" class="rounded" alt="Food image">
                             <?php
                             } else {
                                 echo "Food Image Not available";
@@ -95,7 +95,7 @@
                                 data-food-name="<?php echo $food_name; ?>"
                                 data-food-price="<?php echo $price; ?>"
                                 data-food-description="<?php echo $description; ?>"
-                                data-food-image="<?php echo $food_image; ?>">
+                                data-food-image="images/food/<?php echo $food_image; ?>">
                                 Add to Cart
                             </button>
                         </div>
@@ -240,7 +240,7 @@
                                 ?>
                                         <tr>
                                             <td class="flex">
-                                                <img src="<?php echo htmlspecialchars($food_image); ?>" alt="<?php echo htmlspecialchars($food_name); ?>">
+                                                <img src="images/food/<?php echo htmlspecialchars($food_image); ?>" alt="<?php echo htmlspecialchars($food_name); ?>">
                                                 <div class="name"><?php echo $food_name; ?></div>
                                             </td>
                                             <td>Ksh<?php echo $price; ?></td>

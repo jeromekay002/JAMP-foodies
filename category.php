@@ -14,7 +14,7 @@
     <h2 class="head text-center">Explore Foods</h2>
     <div class="container">
         <?php
-        $get_category_sql = "SELECT * FROM category WHERE status='In Stock' LIMIT 3";
+        $get_category_sql = "SELECT * FROM category WHERE status='Active'";
         $get_category_result = mysqli_query($connect, $get_category_sql);
         if (!$get_category_result) {
             die("Get categort error: " . mysqli_error($connect));
@@ -30,7 +30,7 @@
                         <?php
                         if ($category_image !== "") {
                         ?>
-                            <img src="<?php echo $category_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
+                            <img src="images/categories/<?php echo $category_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
                         <?php
                             // echo '<img src="$category_image" alt="Category Image" class="img-responsive rounded mx-auto d-block">';
                         } else {

@@ -1,0 +1,532 @@
+.food-search {
+    max-height: 250px;
+}
+
+.summary-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    margin-top: -70px;
+}
+
+.summary-boxes .box {
+    flex: 1 1 calc(20% - 20px);
+    min-width: 220px;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #ff4757;
+    color: #333;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.summary-boxes .box i {
+    font-size: 32px;
+    color: #ff4757;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.summary-boxes .box:hover {
+    background-color: #ff4757;
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.summary-boxes .box:hover i {
+    color: #fff;
+}
+
+.summary-boxes .box h1 {
+    font-size: 20px;
+    margin-bottom: 1px;
+    font-weight: 600;
+}
+
+.summary-boxes .box p {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .food-search {
+        height: auto;
+
+    }
+
+    .summary-boxes {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .summary-boxes .box {
+        width: 90%;
+    }
+}
+
+.recent-orders {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.recent-orders h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+
+}
+
+.orders-table thead {
+    background-color: #ff4757;
+    color: #fff;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.orders-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #fff5f5;
+}
+
+/* Status badges */
+.status {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.status.pending {
+    background: #ffa502;
+}
+
+.status.preparing {
+    background: #1e90ff;
+}
+
+.status.delivered {
+    background: #2ed573;
+}
+
+/* View button */
+.view-btn {
+    background: #ff4757;
+    border: none;
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.view-btn:hover {
+    background: #e84118;
+}
+
+/* Responsive */
+/* Responsive for Summary Boxes */
+@media (max-width: 992px) {
+    .summary-boxes {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1px;
+    }
+
+    .summary-boxes .box {
+        flex: 1 1 calc(45% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .summary-boxes .box {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+
+    .recent-orders {
+        margin-top: 100%;
+    }
+
+    .orders-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Section background image */
+.food-management,
+.orders-management {
+    background-image: url("../images/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* White container inside */
+.food-management .food-container,
+.orders-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.food-management .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.food-management h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-btn {
+    background: #ff4757;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-btn i {
+    margin-right: 5px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    background: #ff4757;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.food-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.food-table thead {
+    background: #ff4757;
+    color: #fff;
+}
+
+.food-table th,
+.food-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.food-table img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.status {
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.in-stock {
+    background: #2ed573;
+}
+
+.low-stock {
+    background: #ffa502;
+}
+
+.out-stock {
+    background: #ff4757;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.edit-btn {
+    background: #1e90ff;
+    color: #fff;
+    padding: 6px 0px;
+}
+
+.delete-btn {
+    background: #ff4757;
+    color: #fff;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .food-container {
+        overflow: auto;
+    }
+
+    .food-table {
+        min-width: unset;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .food-table thead th {
+        font-size: 14px;
+        text-wrap: nowrap;
+    }
+
+    .food-table td {
+        font-size: 14px;
+        text-wrap: nowrap;
+    }
+}
+
+/* Modal Title */
+.modal-header h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #2f3542;
+    position: relative;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modal-header h1::after {
+    content: "";
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background: #000;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Close Button */
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: .3s;
+}
+
+.btn-close:hover {
+    font-weight: bold;
+}
+
+/* Form Fields */
+.modal-body .mb-3 {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.modal-body input,
+.modal-body select {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 10px 15px;
+}
+
+.modal-body .mb-3 i {
+    margin-left: 15px;
+    color: #999;
+}
+
+/* Buttons */
+.button-field {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    flex-basis: 48%;
+    background: #ff4757;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    height: 40px;
+    border-radius: 30px;
+    border: 0;
+    outline: 0;
+    transition: ease-in .3s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #e84118;
+}
+
+/* category */
+.category-management {
+    background-image: url(../images/bg.jpg);
+    background-position: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.food-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Make table scrollable only */
+.food-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* orders */
+/* Summary Cards */
+.summary-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-box {
+    flex: 1 1 calc(25% - 15px);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 6px solid #ff4757;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-box i {
+    font-size: 32px;
+    color: #ff4757;
+}
+
+.card-box h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card-box p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.table-header h3 {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-header h3 i {
+    color: #ff4757;
+}
+
+.table-header button {
+    background: #ff4757;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.table-header button i {
+    margin-right: 5px;
+}
+
+.table-header button:hover {
+    background: #e84118;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .card-box {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .card-box {
+        flex: 1 1 100%;
+    }
+}

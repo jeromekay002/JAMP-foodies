@@ -54,7 +54,7 @@ if (isset($_GET['category_id'])) {
                         <?php
                         if ($food_image !== "") {
                         ?>
-                            <img src="<?php echo $food_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
+                            <img src="images/food/<?php echo $food_image; ?>" class="img-responsive rounded mx-auto d-block" alt="Food Category">
                         <?php
                             // echo '<img src="$category_image" alt="Category Image" class="img-responsive rounded mx-auto d-block">';
                         } else {
@@ -72,7 +72,7 @@ if (isset($_GET['category_id'])) {
                             data-food-name="<?php echo $food_name; ?>"
                             data-food-price="<?php echo $price; ?>"
                             data-food-description="<?php echo $description; ?>"
-                            data-food-image="<?php echo $food_image; ?>">
+                            data-food-image="images/food/<?php echo $food_image; ?>">
                             Add to Cart
                         </button>
                     </div>

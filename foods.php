@@ -34,7 +34,7 @@
                             <?php
                             if ($food_image !== "") {
                             ?>
-                                <img src="<?php echo $food_image; ?>" class="rounded" alt="Food image">
+                                <img src="images/food/<?php echo $food_image; ?>" class="rounded" alt="Food image">
                             <?php
                             } else {
                                 echo "Food Image Not available";
@@ -63,7 +63,7 @@
             }
             ?>
         </div>
-        <a href="foods.php" class="see-more">See all foods</a>
+        <!-- <a href="foods.php" class="see-more">See all foods</a> -->
     </div>
 
     <!-- Vertically centered modal -->

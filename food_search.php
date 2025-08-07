@@ -46,7 +46,7 @@
                             <?php
                             if ($food_image !== "") {
                             ?>
-                                <img src="<?php echo $food_image; ?>" class="rounded" alt="Food image">
+                                <img src="images/food/<?php echo $food_image; ?>" class="rounded" alt="Food image">
                             <?php
                             } else {
                                 echo "Food Image Not available";

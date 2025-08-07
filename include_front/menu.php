@@ -101,7 +101,7 @@ $show_login_link = $current_page === 'checkout.php' && !isset($_SESSION['custome
                             <li class="nav-item">
                                 <a class="nav-link btn create" href="#" style="padding: 10px 20px;">My Account</a>
                             </li>
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link create" href="include_front/logout.php" style="padding: 10px 20px;">Log Out</a>
                             </li>
@@ -322,28 +322,36 @@ $show_login_link = $current_page === 'checkout.php' && !isset($_SESSION['custome
         <div id="alertMessage"></div>
 
         <?php
-        if (isset($_SESSION['success'])) {
-            echo "
-        <div class='alert alert-success alert-dismissible fade show' role='alert'>
-            {$_SESSION['success']}
-             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            </button>
-        </div>
-    ";
-            unset($_SESSION['success']);
-        }
+        $alerts = [
+            'success' => ['type' => 'success', 'message' => $_SESSION['success'] ?? null],
+            'order_success' => ['type' => 'success', 'message' => $_SESSION['order_success'] ?? null],
+            'success_message' => ['type' => 'success', 'message' => $_SESSION['success_message'] ?? null],
+            'error_message' => ['type' => 'danger', 'message' => $_SESSION['error_message'] ?? null],
+        ];
 
-        if (isset($_SESSION['order_success'])) {
-            echo $_SESSION['order_success'];
-            unset($_SESSION['order_success']);
+        foreach ($alerts as $key => $alert) {
+            if ($alert['message']) {
+                echo "
+            <div class='alert alert-{$alert['type']} alert-dismissible fade show session-alert' role='alert' style='display: flex; justify-content: space-between; transition: opacity 0.5s ease;'>
+                {$alert['message']}
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close' style='background: transparent; border: none; font-size: 1.5rem;'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+        ";
+                unset($_SESSION[$key]);
+            }
         }
         ?>
-        <?php if (isset($_SESSION['success_message'])) : ?>
-            <?php echo $_SESSION['success_message']; ?>
-            <?php unset($_SESSION['success_message']); ?>
-        <?php endif; ?>
 
-        <?php if (isset($_SESSION['error_message'])) : ?>
-            <?php echo $_SESSION['error_message']; ?>
-            <?php unset($_SESSION['error_message']); ?>
-        <?php endif; ?>
+        <script>
+            // Auto-dismiss alert after 5 seconds
+            setTimeout(function() {
+                const alert = document.querySelector('.session-alert');
+                if (alert) {
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                    setTimeout(() => alert.remove(), 500); // remove from DOM
+                }
+            }, 3000);
+        </script>
