@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2025 at 11:13 PM
+-- Generation Time: Aug 08, 2025 at 10:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,6 +39,15 @@ CREATE TABLE `cartitems` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cartitems`
+--
+
+INSERT INTO `cartitems` (`cart_item_id`, `cart_id`, `food_id`, `food_name`, `food_image`, `quantity`, `price`, `total_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 'Cocacola', 'images/food/1754585807_Food_18.jpeg', 1, 100.00, 100.00, NULL, '2025-08-08 19:53:35'),
+(2, 1, 12, 'chicken stick rolls', 'images/food/1754590880_Glossy Skewered Fried Foods.png', 1, 900.00, 900.00, NULL, '2025-08-08 19:53:35'),
+(3, 1, 8, 'Refreshing drink ', 'images/food/1754589970_Refreshing Strawberry Drink at an Upscale Bar.png', 1, 600.00, 600.00, NULL, '2025-08-08 19:53:35');
 
 -- --------------------------------------------------------
 
@@ -86,7 +95,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `user_id`, `full_name`, `email`, `phone_number`, `delivery_address`) VALUES
-(1, 1, 'Jerome Kaloki', 'jeromekaloki@gmail.com', '0790656804', 'Nairobi, Kenya');
+(1, 3, 'James Example', 'example1@gmail.com', '0710101010', 'Machakos'),
+(2, 4, 'joseph example', 'example2@gmail.com', '0790564788', 'Machakos');
 
 -- --------------------------------------------------------
 
@@ -111,7 +121,7 @@ CREATE TABLE `food` (
 
 INSERT INTO `food` (`food_id`, `food_name`, `product_category`, `food_image`, `price`, `quantity`, `description`, `status`) VALUES
 (3, 'Cocacola', 'Drinks', '1754585807_Food_18.jpeg', 100.00, 30, 'Pure Niceness', 'In Stock'),
-(6, 'Pizza Special', 'Pizza', '1754589780_Grilled Chicken and Pineapple Gourmet Pizza.png', 120.00, 2, 'Hot, cheesy, and irresistibly delicious.', 'In Stock'),
+(6, 'Pizza Special', 'Pizza', '1754589780_Grilled Chicken and Pineapple Gourmet Pizza.png', 120.00, 0, 'Hot, cheesy, and irresistibly delicious.', 'In Stock'),
 (7, 'Burger King', 'Burgers', '1754589867_Gourmet Hamburger on Red Background.png', 500.00, 10, 'Hot, cheesy, and irresistibly delicious.', 'In Stock'),
 (8, 'Refreshing drink ', 'Drinks', '1754589970_Refreshing Strawberry Drink at an Upscale Bar.png', 600.00, 3, ' Juicy, flavorful, and freshly made.', 'In Stock'),
 (9, 'Cake Pisces', 'Desserts', '1754590094_Lavish Purple Frosted Pastries Display.png', 1000.00, 8, 'delicious ', 'In Stock'),
@@ -119,6 +129,27 @@ INSERT INTO `food` (`food_id`, `food_name`, `product_category`, `food_image`, `p
 (11, 'Fries + 1 Burger', 'Fries', '1754590410_Classic American Diner Scene with Burgers.png', 650.00, 10, 'Crispy, golden, and perfectly salted ', 'In Stock'),
 (12, 'chicken stick rolls', 'Chicken ', '1754590880_Glossy Skewered Fried Foods.png', 900.00, 12, ' Juicy, flavorful, and freshly made.', 'In Stock'),
 (13, 'Bucket of chicken wings ', 'Chicken ', '1754591439_Delicious Fried Chicken Basket.png', 350.00, 7, 'chicken wings + fries  ', 'In Stock');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `type` varchar(50) DEFAULT 'general',
+  `status` varchar(20) DEFAULT 'unread',
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `message`, `type`, `status`, `created_at`) VALUES
+(1, '⚠️ Low stock: \'Pizza Special\' has only 0 left.', 'general', 'unread', '2025-08-08 22:26:38');
 
 -- --------------------------------------------------------
 
@@ -142,10 +173,10 @@ CREATE TABLE `orderitems` (
 --
 
 INSERT INTO `orderitems` (`order_item_id`, `order_id`, `food_id`, `food_name`, `food_image`, `quantity`, `price`, `total_price`) VALUES
-(1, 3, 3, 'Cocacola', '1754585807_Food_18.jpeg', 2, 100.00, 200.00),
-(2, 3, 6, 'Pizza Special', '1754589780_Grilled Chicken and Pineapple Gourmet Pizza.png', 1, 120.00, 120.00),
-(3, 4, 3, 'Cocacola', '1754585807_Food_18.jpeg', 2, 100.00, 200.00),
-(4, 4, 6, 'Pizza Special', '1754589780_Grilled Chicken and Pineapple Gourmet Pizza.png', 1, 120.00, 120.00);
+(1, 1, 3, 'Cocacola', '1754585807_Food_18.jpeg', 1, 100.00, 100.00),
+(2, 1, 12, 'chicken stick rolls', '1754590880_Glossy Skewered Fried Foods.png', 1, 900.00, 900.00),
+(3, 1, 8, 'Refreshing drink ', '1754589970_Refreshing Strawberry Drink at an Upscale Bar.png', 1, 600.00, 600.00),
+(5, 3, 6, 'Pizza Special', '1754589780_Grilled Chicken and Pineapple Gourmet Pizza.png', 2, 120.00, 240.00);
 
 -- --------------------------------------------------------
 
@@ -171,7 +202,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `phone_number`, `delivery_address`, `total_amount`, `payment_status`, `payment_method`, `order_status`, `created_at`, `updated_at`) VALUES
-(3, 1, '0790656804', 'Nairobi, Kenya', 320.00, 'Pending', 'Mpesa', 'Received', '2025-08-07 22:46:40', '2025-08-08 05:46:40');
+(1, 1, '0710101010', 'Machakos', 1600.00, 'Pending', 'Mpesa', 'Received', '2025-08-08 21:53:45', '2025-08-09 04:53:45'),
+(3, 2, '0790564788', 'Machakos', 240.00, 'Pending', 'Mpesa', 'Preparing', '2025-08-08 22:26:38', '2025-08-08 20:35:45');
 
 -- --------------------------------------------------------
 
@@ -191,7 +223,8 @@ CREATE TABLE `shoppingcart` (
 --
 
 INSERT INTO `shoppingcart` (`cart_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL);
+(1, 1, '2025-08-08 19:53:34', '2025-08-08 19:53:34'),
+(2, 2, '2025-08-08 20:25:49', '2025-08-08 20:25:49');
 
 -- --------------------------------------------------------
 
@@ -213,8 +246,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `role`, `password`, `created_at`) VALUES
-(1, 'Jerome Kaloki', 'jeromekaloki@gmail.com', 'Customer', '$2y$10$yYBFDHtbvEHi/7ZzSva63eK8B5YxsPb7S1SYUoPxqlSHCF5JD9b9y', '2025-08-07 18:58:56'),
-(2, 'Mary ', 'mary@gmail.com', 'admin', '$2y$10$/YbYQCLzvDDue/L0E/VsK./1ZNzajfHQk36X3Yqy8rzexcObD4TeC', '2025-08-07 19:14:15');
+(2, 'Mary ', 'mary@gmail.com', 'admin', '$2y$10$/YbYQCLzvDDue/L0E/VsK./1ZNzajfHQk36X3Yqy8rzexcObD4TeC', '2025-08-07 19:14:15'),
+(3, 'James Example', 'example1@gmail.com', 'Customer', '$2y$10$MVPjXYHBp5UqWagbEF/rsefZi1xRSsS3eo8SOJF5RN9hcRTMflm4K', '2025-08-08 19:53:25'),
+(4, 'joseph example', 'example2@gmail.com', 'Customer', '$2y$10$NWtwvMdqLC8PLoaOdXyOR./OZ8acpG56EWlUP30J1v1ftWwv7dFii', '2025-08-08 20:25:21');
 
 --
 -- Indexes for dumped tables
@@ -243,6 +277,12 @@ ALTER TABLE `customers`
 --
 ALTER TABLE `food`
   ADD PRIMARY KEY (`food_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orderitems`
@@ -276,7 +316,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cartitems`
 --
 ALTER TABLE `cartitems`
-  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -288,7 +328,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food`
@@ -297,28 +337,34 @@ ALTER TABLE `food`
   MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shoppingcart`
 --
 ALTER TABLE `shoppingcart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
