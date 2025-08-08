@@ -51,7 +51,7 @@
                                 data-food-name="<?php echo $food_name; ?>"
                                 data-food-price="<?php echo $price; ?>"
                                 data-food-description="<?php echo $description; ?>"
-                                data-food-image="<?php echo $food_image; ?>">
+                                data-food-image="images/food/<?php echo $food_image; ?>">
                                 Add to Cart
                             </button>
                         </div>

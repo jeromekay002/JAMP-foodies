@@ -99,7 +99,7 @@ $show_login_link = $current_page === 'checkout.php' && !isset($_SESSION['custome
 
                         <?php else : ?>
                             <li class="nav-item">
-                                <a class="nav-link btn create" href="#" style="padding: 10px 20px;">My Account</a>
+                                <a class="nav-link btn create" href="my_account.php" style="padding: 10px 20px;">My Account</a>
                             </li>
 
                             <li class="nav-item">

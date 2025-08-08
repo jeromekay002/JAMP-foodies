@@ -39,36 +39,46 @@ include("include_front/navbar.php");
                 }
                 if (mysqli_num_rows($get_all_foods_res) > 0) {
                     while ($row = mysqli_fetch_assoc($get_all_foods_res)) {
+
+                        $food_image = $row['food_image'];
+                        $food_name = $row['food_name'];
+                        $category = $row['product_category'];
+                        $price = $row['price'];
+                        $quantity = $row['quantity'];
+                        $status = $row['status'];
+
+                        // Check and update status based on quantity
+                        if ($quantity <= 0) {
+                            $status = "Out of Stock";
+                        } elseif ($quantity <= 5) {
+                            $status = "Low Stock";
+                        } else {
+                            $status = "In Stock";
+                        }
                 ?>
                         <tr>
                             <td>
-                                <?php
-                                $food_image = $row['food_image'];
-                                if ($food_image !== "") {
-                                ?>
-                                    <img src="../images/food/<?php echo htmlspecialchars($food_image); ?>" alt="French Fries">
-                                <?php
-                                } else {
+                                <?php if (!empty($food_image)) { ?>
+                                    <img src="../images/food/<?php echo htmlspecialchars($food_image); ?>" alt="Food Image">
+                                <?php } else {
                                     echo "Food Image Not available";
-                                }
-                                ?>
-
+                                } ?>
                             </td>
-                            <td><?php echo $row['food_name']; ?></td>
-                            <td><?php echo $row['product_category']; ?></td>
-                            <td>Ksh <?php echo $row['price']; ?></td>
-                            <td><?php echo $row['quantity']; ?></td>
+                            <td><?php echo htmlspecialchars($food_name); ?></td>
+                            <td><?php echo htmlspecialchars($category); ?></td>
+                            <td>Ksh <?php echo number_format($price, 2); ?></td>
+                            <td><?php echo htmlspecialchars($quantity); ?></td>
                             <td>
                                 <?php
-                                $status = $row['status'];
                                 if ($status == "In Stock") {
-                                    echo "<span class='status in-stock'>$status</span></td>";
-                                } else if ($status == "Out of Stock") {
-                                    echo "<span class='status out-stock'>$status</span></td>";
-                                } else {
-                                    echo "<span class='status low-stock '>$status</span></td>";
+                                    echo "<span class='status in-stock'>$status</span>";
+                                } elseif ($status == "Out of Stock") {
+                                    echo "<span class='status out-stock'>$status</span>";
+                                } elseif ($status == "Low Stock") {
+                                    echo "<span class='status low-stock'>$status</span>";
                                 }
                                 ?>
+                            </td>
                             <td style="display: flex;">
                                 <button class="edit-btn edit-food-btn" title="Edit"
                                     data-id="<?php echo $row['food_id']; ?>"

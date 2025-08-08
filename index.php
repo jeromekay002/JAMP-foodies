@@ -240,7 +240,7 @@
                                 ?>
                                         <tr>
                                             <td class="flex">
-                                                <img src="images/food/<?php echo htmlspecialchars($food_image); ?>" alt="<?php echo htmlspecialchars($food_name); ?>">
+                                                <img src="<?php echo htmlspecialchars($food_image); ?>" alt="<?php echo htmlspecialchars($food_name); ?>">
                                                 <div class="name"><?php echo $food_name; ?></div>
                                             </td>
                                             <td>Ksh<?php echo $price; ?></td>

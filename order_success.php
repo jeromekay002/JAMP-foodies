@@ -58,6 +58,7 @@ $customer_name = $_SESSION['customer_name'] ?? 'Valued Customer';
             Track Your Order
         </a>
         <br>
+        <a href="my_orders.php?order_id=<?= urlencode($order_id) ?>" class="btn btn-link mt-3">View Order</a>
         <a href="index.php" class="btn btn-link mt-3">Back to Home</a>
     </div>
 

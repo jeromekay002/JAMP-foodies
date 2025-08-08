@@ -5,6 +5,12 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+// Redirect to login page if not logged in
+if (!isset($_SESSION['admin_logged_in'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+$_SESSION['admin_id'] ?? '0';
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +59,15 @@ if (!$connect) {
                             <a class="nav-link" href="orders.php">Orders</a>
                         </li>
                         <li class="nav-item">
-                            <button type="button" class="btn create">Logout</button>
+                            <a class="nav-link" href="notifications.php">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="my_account.php">
+                                <span class="nav-link">👤 <?= $_SESSION['admin_name'] ?? 'Admin' ?></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="logout.php" class="btn create">Logout</a>
                         </li>
                     </ul>
                 </div>

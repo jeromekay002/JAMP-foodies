@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $quantity = $_POST['quantity'][$index];
             $price = $_POST['food_price'][$index];
             $total_price = $_POST['total_price'][$index];
+            $low_stock_threshold = 5;
 
             // Get food image
             $stmt_img = mysqli_prepare($connect, "SELECT food_image FROM food WHERE food_id = ?");
@@ -83,6 +84,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_stmt_bind_param($stmt_item, 'iissidd', $order_id, $food_id, $food_name, $food_image, $quantity, $price, $total_price);
             mysqli_stmt_execute($stmt_item);
             mysqli_stmt_close($stmt_item);
+
+            //  Decrease food quantity
+            $update_food = mysqli_prepare($connect, "UPDATE food SET quantity = quantity - ? WHERE food_id = ?");
+            mysqli_stmt_bind_param($update_food, 'ii', $quantity, $food_id);
+            mysqli_stmt_execute($update_food);
+            mysqli_stmt_close($update_food);
+
+            // 2. Check updated quantity
+            $check_qty = mysqli_prepare($connect, "SELECT food_name, quantity FROM food WHERE food_id = ?");
+            mysqli_stmt_bind_param($check_qty, 'i', $food_id);
+            mysqli_stmt_execute($check_qty);
+            mysqli_stmt_bind_result($check_qty, $food_name_check, $remaining_qty);
+            mysqli_stmt_fetch($check_qty);
+            mysqli_stmt_close($check_qty);
+
+            // 3. If quantity is below threshold, notify admin
+            if ($remaining_qty <= $low_stock_threshold) {
+                $notification_msg = "⚠️ Low stock: '$food_name_check' has only $remaining_qty left.";
+                $created_at = date('Y-m-d H:i:s');
+
+                $notify_stmt = mysqli_prepare($connect, "INSERT INTO notifications (message, created_at, status) VALUES (?, ?, 'unread')");
+                mysqli_stmt_bind_param($notify_stmt, 'ss', $notification_msg, $created_at);
+                mysqli_stmt_execute($notify_stmt);
+                mysqli_stmt_close($notify_stmt);
+            }
         }
 
         // Commit transaction

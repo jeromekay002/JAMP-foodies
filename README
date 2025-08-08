@@ -1,94 +1,114 @@
-🍔 JampFoodies – Food Ordering Website
+## 🍔 JampFoodies – Food Ordering Website
+JampFoodies is a simple and functional online food ordering system. Users can browse food items, add them to a cart, and place orders. It supports both guest and logged-in user flows.
 
-Welcome to JampFoodies, a simple and functional online food ordering system. Users can browse food items, add them to a cart, and place an order.
+## ⭐ Features
+ - 🧾 View food categories and menu
 
-*** Features***
-View food categories and menu
+ - 🛒 Add items to a shopping cart
 
-Add items to a shopping cart
+ - 🚚 Checkout with delivery info & payment method
 
-Checkout with delivery info & payment method
+ - 👥 Supports both logged-in and guest users
 
-Logged-in and guest users supported
+ - 📦 Order tracking & cart persistence via MySQL
 
-Order tracking & cart persistence via MySQL
+## 💻 Tech Stack
+ - PHP – Backend logic, form handling, and session management
+
+ - MySQL – Stores all application data
+
+ - HTML/CSS – Page structure and styling
+
+ - Bootstrap – Responsive front-end components
+
+ - JavaScript + jQuery – Client-side interactivity (cart    updates, AJAX, etc.)
+
+## 🧾 Database Schema Overview
+###  - 📁 Tables included:
+
+ - category
+
+ - food
+
+ - customers
+
+ - shoppingCart
+
+ - cartItems
+
+ - users
+
+ - orders
+
+ - orderItems
+
+## Sample schema and data are included in the jampfoodies.sql file.
+
+## 🛠️ How to Run the Project Locally
+✅ Step 1: Set Up Local Server
+ - Install XAMPP or WAMP
+
+ - Clone this repository
+
+ - Move the project folder to your server directory:
+
+ - For XAMPP: C:\xampp\htdocs\JAMP-Foodies\
+
+ - For WAMP: C:\wamp\www\JAMP-Foodies\
+
+ - Start Apache and MySQL via your XAMPP/WAMP control panel
+
+✅ Step 2: Import the Database (MySQL Workbench or phpMyAdmin)
+ - Open MySQL Workbench
+
+ - Create a new schema named jampfoodies
+
+ - Go to File → Open SQL Script, and select jampfoodies.sql from the project folder
+
+ - Click the lightning bolt ⚡️ (or press Ctrl+Shift+Enter) to execute
+
+ - Confirm that the tables have been created successfully
+
+## 📌 How It Works
+ - Home page displays food categories and items
+
+ - Guests and users can add items to the cart
+
+ - Items are stored in the shoppingCart and cartItems tables
+
+ - On checkout, users provide delivery and payment information
+
+ - The order is saved, and users are redirected to the home or success page
+
+## 🛠️ Admin Panel Functionality
+    The Admin Panel provides full control over the application's backend and data management. It is a secure area of the system where administrators can:
+
+## 🔄 CRUD Operations
+ - Create
+
+    - Add new restaurants, menu items, categories, riders, and users.
+
+    - Register new admins or update access privileges.
+
+ - Read (View)
+
+    - View all orders, customers, riders, and hotel information in an organized dashboard.
+
+    - Monitor order progress (Order Placed → Preparing → Ready for Pickup → Out for Delivery).
+
+    - Track delivery location in real time using Leaflet maps and GraphHopper API.
+
+ - Update
+
+     - Edit existing menu items, change rider details, update order statuses, and customer information.
+
+     - Manage rider locations, hotel geolocation, and delivery assignments.
+
+ - Delete
+
+    - Remove outdated or irrelevant food items, customer records, or incomplete orders.
+
+    - Automatically deletes uploaded images from the server when a menu item is deleted.
 
 
-**Tech Stack***
-PHP – Handles backend logic and sessions
 
-MySQL – Stores all app data
-
-HTML/CSS – Page structure and styling
-
-Bootstrap – For responsive design
-
-JavaScript + jQuery – Dynamic interactions (e.g., cart updates, AJAX)
-
-
-🧾 Database Schema Overview
-📁 Tables:
-category
-
-food
-
-customers
-
-shoppingCart
-
-cartItems
-
-users
-
-orders
-
-orderItems
-
-Sample data and schema are included in jampfoodies.sql.
-
-
-
-HOW TO RUN THE PROJECT IN YOUR LOCAL COMPUTER AFTER CLONING THE REPO
-Step 1: Run Locally
-1. Download and install XAMPP or WAMP (https://www.apachefriends.org/index.html)
-
-2. Clone This repository
-
-3. Move the project folder to your server directory:
-
-4. For XAMPP: C:\xampp\htdocs\JAMP-Foodies\
-
-5. For WAMP: C:\wamp\www\JAMP-Foodies\
-
-6. Start Apache and MySQL from XAMPP/WAMP control panel
-
-✅ Step 2: Import the Database (Using MySQL Workbench)
-the same process as the sampledb database we learnt
-1. Open MySQL Workbench
-
-2. Create a new schema named jampfoodies
-
-3. Click File > Open SQL Script, and select jampfoodies.sql from the project folder
-
-4. Click the lightning bolt ⚡️ (or press Ctrl+Shift+Enter) to run the script
-
-5. Confirm the tables have been created in the jampfoodies schema
-
-
-📌 How It Works
-1. Home page displays categories and food items
-
-2. Both guests and logged-in users can add items to cart
-
-3. Items in the cart are stored in the database
-
-4. Checkout page collects delivery and payment info
-
-5. Orders are saved and the user is redirected to home
-
-
-*******  📽️ Demo Video   *****
-▶️ [Watch the demo video](https://drive.google.com/file/d/1DmHjriHYCY-ansHB1cchrOwvsjIlfDUu/view?usp=sharing)  
-
-
-#PLP Hackathon

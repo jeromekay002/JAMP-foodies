@@ -14,7 +14,7 @@ include("include_front/navbar.php");
                     <h3>Received Orders</h3>
                     <p>
                         <?php
-                        $pending_orders_sql = "SELECT COUNT(*) AS total FROM orders WHERE order_status = 'Received'";
+                        $pending_orders_sql = "SELECT COUNT(*) AS total FROM orders WHERE order_status = 'Received' OR order_status = 'Order Placed'";
                         $pending_orders_res = mysqli_query($connect, $pending_orders_sql);
                         if ($pending_orders_res) {
                             $pending_orders_row = mysqli_fetch_assoc($pending_orders_res);
@@ -49,7 +49,7 @@ include("include_front/navbar.php");
                 <div>
                     <h3>Delivered Orders</h3>
                     <p>
-                        <?php 
+                        <?php
                         $delivered_orders_sql = "SELECT COUNT(*) AS total FROM orders WHERE order_status = 'Delivered'";
                         $delivered_orders_res = mysqli_query($connect, $delivered_orders_sql);
                         if ($delivered_orders_res) {
@@ -155,7 +155,11 @@ include("include_front/navbar.php");
                                 </td>
                                 <td data-label="Total">Ksh<?php echo number_format($row['total'], 2); ?></td>
                                 <td data-label="Date"><?php echo date("Y-m-d", strtotime($row['date'])); ?></td>
-                                <td data-label="Action"><button class="view-btn">View</button></td>
+                                <td data-label="Action">
+                                    <a href="view_order.php?order_id=<?= $row['order_id'] ?>" class="view-btn">View</a>
+                                </td>
+
+
                             </tr>
                     <?php
                         }
@@ -166,33 +170,7 @@ include("include_front/navbar.php");
                     }
 
                     ?>
-                    <!-- <tr>
-                        <td data-label="Order ID">#1005</td>
-                        <td data-label="Customer">John Doe</td>
-                        <td data-label="Items">3</td>
-                        <td data-label="Status"><span class="status pending">Pending</span></td>
-                        <td data-label="Total">$25</td>
-                        <td data-label="Date">2025-08-05</td>
-                        <td data-label="Action"><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">#1006</td>
-                        <td data-label="Customer">Jane Smith</td>
-                        <td data-label="Items">2</td>
-                        <td data-label="Status"><span class="status preparing">Preparing</span></td>
-                        <td data-label="Total">$18</td>
-                        <td data-label="Date">2025-08-04</td>
-                        <td data-label="Action"><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">#1007</td>
-                        <td data-label="Customer">Mark Lee</td>
-                        <td data-label="Items">5</td>
-                        <td data-label="Status"><span class="status delivered">Delivered</span></td>
-                        <td data-label="Total">$42</td>
-                        <td data-label="Date">2025-08-03</td>
-                        <td data-label="Action"><button class="view-btn">View</button></td>
-                    </tr> -->
+
                 </tbody>
             </table>
         </div>

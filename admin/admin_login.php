@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_id'] = $user['user_id'];
             $_SESSION['admin_name'] = $user['full_name'];
             header("Location: index.php");
             exit();

@@ -18,14 +18,14 @@ include("include_front/navbar.php");
                     <h3>Food</h3>
                     <p>
                         <?php
-                            $food_count_sql = "SELECT COUNT(*) AS total FROM food";
-                            $food_count_res = mysqli_query($connect, $food_count_sql);
-                            if ($food_count_res) {
-                                $food_count_row = mysqli_fetch_assoc($food_count_res);
-                                echo $food_count_row['total'];
-                            } else {
-                                echo "0";
-                            }
+                        $food_count_sql = "SELECT COUNT(*) AS total FROM food";
+                        $food_count_res = mysqli_query($connect, $food_count_sql);
+                        if ($food_count_res) {
+                            $food_count_row = mysqli_fetch_assoc($food_count_res);
+                            echo $food_count_row['total'];
+                        } else {
+                            echo "0";
+                        }
                         ?>
                     </p>
                 </div>
@@ -36,14 +36,14 @@ include("include_front/navbar.php");
                     <h3>Category</h3>
                     <p>
                         <?php
-                            $category_count_sql = "SELECT COUNT(*) AS total FROM category";
-                            $category_count_res = mysqli_query($connect, $category_count_sql);
-                            if ($category_count_res) {
-                                $category_count_row = mysqli_fetch_assoc($category_count_res);
-                                echo $category_count_row['total'];
-                            } else {
-                                echo "0";
-                            }
+                        $category_count_sql = "SELECT COUNT(*) AS total FROM category";
+                        $category_count_res = mysqli_query($connect, $category_count_sql);
+                        if ($category_count_res) {
+                            $category_count_row = mysqli_fetch_assoc($category_count_res);
+                            echo $category_count_row['total'];
+                        } else {
+                            echo "0";
+                        }
                         ?>
                     </p>
                 </div>
@@ -54,14 +54,14 @@ include("include_front/navbar.php");
                     <h3>Orders</h3>
                     <p>
                         <?php
-                            $orders_count_sql = "SELECT COUNT(*) AS total FROM orders";
-                            $orders_count_res = mysqli_query($connect, $orders_count_sql);
-                            if ($orders_count_res) {
-                                $orders_count_row = mysqli_fetch_assoc($orders_count_res);
-                                echo $orders_count_row['total'];
-                            } else {
-                                echo "0";
-                            }
+                        $orders_count_sql = "SELECT COUNT(*) AS total FROM orders";
+                        $orders_count_res = mysqli_query($connect, $orders_count_sql);
+                        if ($orders_count_res) {
+                            $orders_count_row = mysqli_fetch_assoc($orders_count_res);
+                            echo $orders_count_row['total'];
+                        } else {
+                            echo "0";
+                        }
                         ?>
                     </p>
                 </div>
@@ -72,14 +72,14 @@ include("include_front/navbar.php");
                     <h3>Customers</h3>
                     <p>
                         <?php
-                            $customers_count_sql = "SELECT COUNT(*) AS total FROM customers";
-                            $customers_count_res = mysqli_query($connect, $customers_count_sql);
-                            if ($customers_count_res) {
-                                $customers_count_row = mysqli_fetch_assoc($customers_count_res);
-                                echo $customers_count_row['total'];
-                            } else {
-                                echo "0";
-                            }
+                        $customers_count_sql = "SELECT COUNT(*) AS total FROM customers";
+                        $customers_count_res = mysqli_query($connect, $customers_count_sql);
+                        if ($customers_count_res) {
+                            $customers_count_row = mysqli_fetch_assoc($customers_count_res);
+                            echo $customers_count_row['total'];
+                        } else {
+                            echo "0";
+                        }
                         ?>
                     </p>
                 </div>
@@ -148,7 +148,9 @@ include("include_front/navbar.php");
                                 </td>
                                 <td data-label="Total">Ksh<?php echo number_format($row['total'], 2); ?></td>
                                 <td data-label="Date"><?php echo date("Y-m-d", strtotime($row['date'])); ?></td>
-                                <td data-label="Action"><button class="view-btn">View</button></td>
+                                <td data-label="Action">
+                                    <a href="view_order.php?order_id=<?= $row['order_id'] ?>" class="view-btn">View</a>
+                                </td>
                             </tr>
                     <?php
                         }
@@ -159,7 +161,7 @@ include("include_front/navbar.php");
                     }
 
                     ?>
-                 
+
                 </tbody>
             </table>
         </section>
