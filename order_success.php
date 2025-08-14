@@ -54,8 +54,8 @@ $customer_name = $_SESSION['customer_name'] ?? 'Valued Customer';
         <p>Your order has been placed successfully.</p>
         <p class="order-id">Order ID: <?= htmlspecialchars($order_id) ?></p>
 
-        <a href="track-order.php?order_id=<?= urlencode($order_id) ?>" class="btn btn-primary btn-track">
-            Track Your Order
+        <a href="order_tracking.php?order_id=<?= $order['order_id'] ?>" class="btn-back" style="background-color: #28a745; margin-left: 10px;">
+            🚚 Track Order
         </a>
         <br>
         <a href="my_orders.php?order_id=<?= urlencode($order_id) ?>" class="btn btn-link mt-3">View Order</a>

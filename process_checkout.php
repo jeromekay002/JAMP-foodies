@@ -99,8 +99,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_stmt_fetch($check_qty);
             mysqli_stmt_close($check_qty);
 
-            // 3. If quantity is below threshold, notify admin
-            if ($remaining_qty <= $low_stock_threshold) {
+            // 3. If quantity is below or equal to 0, mark as Out of Stock
+            if ($remaining_qty <= 0) {
+                $status_update = mysqli_prepare($connect, "UPDATE food SET status = 'Out of Stock', quantity = 0 WHERE food_id = ?");
+                mysqli_stmt_bind_param($status_update, 'i', $food_id);
+                mysqli_stmt_execute($status_update);
+                mysqli_stmt_close($status_update);
+            }
+
+            // 4. If quantity is below threshold (but above 0), notify admin
+            if ($remaining_qty > 0 && $remaining_qty <= $low_stock_threshold) {
                 $notification_msg = "⚠️ Low stock: '$food_name_check' has only $remaining_qty left.";
                 $created_at = date('Y-m-d H:i:s');
 

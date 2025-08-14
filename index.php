@@ -60,7 +60,7 @@
         <h2 class="head text-center">Food Menu</h2>
         <div class="food-menu-boxes">
             <?php
-            $get_food_sql = "SELECT * FROM food LIMIT 8";
+            $get_food_sql = "SELECT * FROM food WHERE status='In Stock' LIMIT 8";
             $get_food_result = mysqli_query($connect, $get_food_sql);
             if (!$get_food_result) {
                 die("Get food sql error: " . mysqli_error($connect));

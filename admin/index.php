@@ -135,15 +135,29 @@ include("include_front/navbar.php");
                                 <td data-label="Status">
                                     <?php
                                     $status = $row['status'];
-                                    if ($status == "Received") {
-                                        echo "<span class='status pending'>$status</span>";
-                                    } else if ($status == "Preparing") {
-                                        echo "<span class='status preparing'>$status</span>";
-                                    } else if ($status == "Delivered") {
-                                        echo "<span class='status delivered'>$status</span>";
-                                    } else {
-                                        echo "<span class='status cancelled'>$status</span>";
+
+                                    switch (strtolower($status)) {
+                                        case "received":
+                                            $class = "pending";
+                                            break;
+                                        case "preparing":
+                                            $class = "preparing";
+                                            break;
+                                        case "ready for pickup":
+                                            $class = "preparing"; // same style as preparing
+                                            break;
+                                        case "delivered":
+                                            $class = "delivered";
+                                            break;
+                                        case "cancelled":
+                                            $class = "cancelled";
+                                            break;
+                                        default:
+                                            $class = "unknown"; // for any unexpected status
+                                            break;
                                     }
+
+                                    echo "<span class='status $class'>" . htmlspecialchars($status) . "</span>";
                                     ?>
                                 </td>
                                 <td data-label="Total">Ksh<?php echo number_format($row['total'], 2); ?></td>

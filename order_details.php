@@ -6,7 +6,7 @@ if (!$connect) {
 }
 
 if (!isset($_SESSION['customer_id'])) {
-    header("Location: login.php");
+    header("Location: index.php#loginSection");
     exit();
 }
 
@@ -164,6 +164,10 @@ $items_result = $items_query->get_result();
             </table>
         </div>
         <a href="my_orders.php" class="btn-back">← Back to My Orders</a>
+        <a href="order_tracking.php?order_id=<?= $order['order_id'] ?>" class="btn-back" style="background-color: #28a745; margin-left: 10px;">
+            🚚 Track Order
+        </a>
+
     </div>
 </body>
 
